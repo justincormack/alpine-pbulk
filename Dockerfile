@@ -18,14 +18,16 @@ RUN \
   rsync \
   m4
 
+RUN \
+  cd /usr && \
+  git clone https://github.com/jsonn/pkgsrc.git
+
 ENV \
   PATH=/usr/pbulk/bin:$PATH \
   NOGCCERROR=yes \
   PKG_DEFAULT_OPTIONS="-gssapi"
 
 RUN \
-  cd /usr && \
-  git clone https://github.com/jsonn/pkgsrc.git && \
   adduser -D pbulk && \
   mkdir /usr/tmp && \
   cd /usr/pkgsrc/mk/pbulk && LIBABISUFFIX="" sh ./pbulk.sh -n
