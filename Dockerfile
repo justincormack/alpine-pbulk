@@ -1,9 +1,6 @@
-
 FROM alpine:latest
 
-MAINTAINER Justin Cormack
-
-env PATH=/usr/pbulk/bin:$PATH
+MAINTAINER Justin Cormack <justin@specialbusservice.com>
 
 RUN \
   apk update && \
@@ -19,10 +16,18 @@ RUN \
   wget \
   git \
   rsync \
-  m4 \
-  && \
-  wget -q http://ftp.ipv6.uni-leipzig.de/pub/ftp.netbsd.org/pub/pkgsrc/current/pkgsrc.tgz && \
-  tar -xzf pkgsrc.tgz -C /usr && \
+  m4
+
+ENV \
+  PATH=/usr/pbulk/bin:$PATH \
+  NOGCCERROR=yes \
+  PKG_DEFAULT_OPTIONS="-gssapi"
+
+RUN \
+  cd /usr && \
+  git clone https://github.com/jsonn/pkgsrc.git && \
   adduser -D pbulk && \
   mkdir /usr/tmp && \
-  cd /usr/pkgsrc/mk/pbulk && NOGCCERROR=yes LIBABISUFFIX="" sh ./pbulk.sh -n
+  cd /usr/pkgsrc/mk/pbulk && LIBABISUFFIX="" sh ./pbulk.sh -n
+
+COPY pbulk.conf /usr/pbulk/etc/
