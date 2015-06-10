@@ -25,11 +25,12 @@ RUN \
 ENV \
   PATH=/usr/pbulk/bin:$PATH \
   NOGCCERROR=yes \
-  PKG_DEFAULT_OPTIONS="-gssapi"
+  PKG_DEFAULT_OPTIONS="-gssapi" \
+  LIBABISUFFIX=""
 
 RUN \
   adduser -D pbulk && \
   mkdir /usr/tmp && \
-  cd /usr/pkgsrc/mk/pbulk && LIBABISUFFIX="" sh ./pbulk.sh -n
+  cd /usr/pkgsrc/mk/pbulk && sh ./pbulk.sh -n
 
 COPY pbulk.conf /usr/pbulk/etc/
