@@ -38,5 +38,3 @@ RUN \
   adduser -D pbulk && \
   mkdir /usr/tmp && \
   cd /usr/pkgsrc/mk/pbulk && sh ./pbulk.sh -c /usr/pbulk/etc/conf
-
-COPY limited_list /usr/pbulk/etc/
