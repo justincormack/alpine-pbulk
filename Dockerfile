@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.1
 
 MAINTAINER Justin Cormack <justin@specialbusservice.com>
 
@@ -34,3 +34,4 @@ RUN \
   cd /usr/pkgsrc/mk/pbulk && sh ./pbulk.sh -n
 
 COPY pbulk.conf /usr/pbulk/etc/
+COPY limited_list /usr/pbulk/etc/
