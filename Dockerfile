@@ -8,6 +8,9 @@ RUN \
   apk add \
   build-base \
   gawk \
+  tar \
+  grep \
+  gzip \
   sed \
   zlib-dev \
   openssl-dev \
@@ -28,10 +31,12 @@ ENV \
   PKG_DEFAULT_OPTIONS="-gssapi" \
   LIBABISUFFIX=""
 
+COPY conf /usr/pbulk/etc/
+
 RUN \
   adduser -D pbulk && \
   mkdir /usr/tmp && \
-  cd /usr/pkgsrc/mk/pbulk && sh ./pbulk.sh
+  cd /usr/pkgsrc/mk/pbulk && sh ./pbulk.sh -c /usr/pbulk/etc/conf
 
 COPY pbulk.conf /usr/pbulk/etc/
 COPY limited_list /usr/pbulk/etc/

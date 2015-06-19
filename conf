@@ -1,0 +1,6 @@
+PKG_DEVELOPER=          yes
+X11_TYPE=               modular
+SKIP_LICENSE_CHECK=     yes
+MAKE_JOBS=              8
+MASTER_SORT_REGEX=  http://.*/
+TOOLS_PLATFORM.tar?=	/bin/tar
