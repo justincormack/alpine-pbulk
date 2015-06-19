@@ -32,11 +32,11 @@ ENV \
   LIBABISUFFIX=""
 
 COPY conf /usr/pbulk/etc/
+COPY pbulk.conf /usr/pbulk/etc/
 
 RUN \
   adduser -D pbulk && \
   mkdir /usr/tmp && \
   cd /usr/pkgsrc/mk/pbulk && sh ./pbulk.sh -c /usr/pbulk/etc/conf
 
-COPY pbulk.conf /usr/pbulk/etc/
 COPY limited_list /usr/pbulk/etc/
